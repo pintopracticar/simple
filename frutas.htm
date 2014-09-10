@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Frutas</title>
+        <!--[if gte IE 9]><style type="text/css">.gra{filter: none;}</style><![endif]-->
+        <link rel="stylesheet" href="estilos-comunes2.css" />
+        <script type="text/javascript">
+            var frutadores = new Array(), frutAEmpujar,x = 0,encontrado; // El array contiene todos los datos, frutAEmpujar sirve para el push, x es un contador
+            // constructor
+            var frutador = function Frutador(tip,can,com){
+                this.tipo = tip; // Cual fruta?
+                this.cantidad = can; // Cuantas frutas?
+                this.nombreDelComprador = com; // Nombre del comprador?
+            };
+            // Validador del form principal
+            function validarForm(){
+                // Paso a variables los datos de cada campo del formulario
+                var tipo = document.getElementById("tipo").value;
+                var cantidad = document.getElementById("cantidad").value;
+                var comprador = document.getElementById("nombre").value;
+                // Validacion simple, con un IF
+                if(tipo!=="" && cantidad && comprador!==""){
+                    console.log("Todo bien! form validado"); // Aviso que los datos fueron completados bien, via consola
+                    // Formo el objeto y le paso via parametros los datos del formulario
+                    frutAEmpujar = new frutador(tipo,cantidad,comprador);
+                    frutadores.push(frutAEmpujar);
+                // Si no se completaron bien los datos del formulario... largo una alerta al usuario.
+                } else {
+                    alert("Complete todos los campos por favor.");
+                };
+            };
+            
+            // Validador del form de estadisticas
+            function revisarStats(){
+                // Paso a variables el dato del formulario
+                var statsNombre = document.getElementById("nombrestats").value;
+                // Booleano donde se almacena la determinacion: se encontro el dato o no?
+                encontrado = false;
+                if(!frutadores[0]){ // Si es que ningun dato ha sido cargado
+                    console.log("No se ha encontrado a " + statsNombre + " en la Mini DB.");
+                } else { // En caso contrario comienza el bucle
+                    do {
+                        // Si llega a encontrarse lo buscado
+                        if(frutadores[x].nombreDelComprador === statsNombre){
+                            console.log("El comprador ha sido encontrado en la Mini DB.");
+                            console.log(frutadores[x]);
+                            encontrado=true; // Cambio determinante
+                            break;
+                        };
+                        encontrado = false; // No se cambia el determinante
+                        x++;
+                    } while (x < frutadores.length);
+                };
+                // Si la determinante sigue en false:
+                if(encontrado === false){
+                    console.log("No se ha encontrado a " + statsNombre + " en la Mini DB.");
+                };
+                // Reseteo la X
+                x = 0;
+            };
+            
+            // Agrego interactividad a los formularios
+            window.onload = function(){
+                // Selecciono los botones importantes y los almaceno en variables
+                var botonSubmit = document.getElementById("env");
+                var botonStats = document.getElementById("stats");
+                // Al ser clickeado, cada uno ejecutara su propia funcion
+                botonSubmit.onclick = validarForm;
+                botonStats.onclick = revisarStats;
+            };
+        </script>
+    </head>
+    <body>
+        <div id="w">
+            <h2>Ingrese datos</h2>
+            <form>
+                <p>
+                    <label for="tipo">Nombre de la fruta:</label><br />
+                    <input type="text" name="tipo" placeholder="cual?" id="tipo">
+                </p>
+                <p>
+                    <label for="cantidad">Cantidad:</label><br />
+                    <input type="number" name="cantidad" placeholder="cuantas?" id="cantidad">
+                </p>
+                <p>
+                    <label for="nombre">Comprador:</label><br />
+                    <input type="text" name="nombre" placeholder="quién?" id="nombre">
+                </p>
+                <p>
+                    <input type="button" value="Enviar" id="env" class="accbut">
+                </p>
+            </form>
+            <h2>Conozca la información</h2>
+            <form>
+                <p>
+                    <label for="nombrestats">Nombre del comprador:</label><br />
+                    <input type="text" name="nombrestats" placeholder="consulte los datos" id="nombrestats">
+                </p>
+                <p>
+                    <input type="button" value="Averigüar" id="stats" class="accbut">
+                </p>
+            </form>
+        </div>
+    </body>
+</html>
