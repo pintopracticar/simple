@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Frutas</title>
+        <!--[if gte IE 9]><style type="text/css">.gra{filter: none;}</style><![endif]-->
+        <link rel="stylesheet" href="estilos-comunes2.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+        <script src="mainfrutas2.js"></script>
+        <script src="angularstats.js"></script>
+    </head>
+    <body ng-app>
+        <div id="pop">
+            <p id="pcerrar"><a href="javascript:;" id="cerrar">cerrar X</a></p>
+            <h3>{{ nombre }}</h3>
+            <p>Fruta:</p>
+            <p>Cantidad:</p>
+        </div>
+        <div id="w">
+            <h2>Ingrese datos</h2>
+            <form>
+                <p>
+                    <label for="tipo">Nombre de la fruta:</label><br />
+                    <input type="text" name="tipo" placeholder="cual?" id="tipo">
+                </p>
+                <p>
+                    <label for="cantidad">Cantidad:</label><br />
+                    <input type="number" name="cantidad" placeholder="cuantas?" id="cantidad">
+                </p>
+                <p>
+                    <label for="nombre">Comprador:</label><br />
+                    <input type="text" name="nombre" placeholder="quién?" id="nombre">
+                </p>
+                <p>
+                    <input type="button" value="Enviar" id="env" class="accbut">
+                </p>
+            </form>
+            <h2>Conozca la información</h2>
+            <form>
+                <p>
+                    <label for="nombrestats">Nombre del comprador:</label><br />
+                    <input type="text" name="nombrestats" placeholder="consulte los datos" id="nombrestats" ng-model="nombre">
+                </p>
+                <p>
+                    <input type="button" value="Averigüar" id="stats" class="accbut">
+                </p>
+            </form>
+        </div>
+    </body>
+</html>
