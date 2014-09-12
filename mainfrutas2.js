@@ -1,4 +1,4 @@
-            var frutadores = new Array(), frutAEmpujar,x = 0,encontrado; // El array contiene todos los datos, frutAEmpujar sirve para el push, x es un contador
+            var frutadores = new Array(), frutAEmpujar,x = 0,encontrado,i = 0; // El array contiene todos los datos, frutAEmpujar sirve para el push, x es un contador
             // constructor
             var frutador = function Frutador(tip,can,com){
                 this.tipo = tip; // Cual fruta?
@@ -43,6 +43,7 @@
                             console.log(frutadores[x]);
                             encontrado = true; // Cambio determinante
                             document.getElementById("pop").style.visibility = "visible";
+                            $scope.posicion = x;
                             break;
                         };
                         encontrado = false; // No se cambia el determinante
