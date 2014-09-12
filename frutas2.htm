@@ -1,19 +1,21 @@
 <!doctype html>
-<html>
+<html ng-app="statsShow">
     <head>
         <title>Frutas</title>
         <!--[if gte IE 9]><style type="text/css">.gra{filter: none;}</style><![endif]-->
         <link rel="stylesheet" href="estilos-comunes2.css" />
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-        <script src="mainfrutas2.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-route.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular-resource.min.js"></script>
         <script src="angularstats.js"></script>
+        <script src="mainfrutas2.js"></script>
     </head>
-    <body ng-app>
+    <body ng-controller="statsCtrl">
         <div id="pop">
             <p id="pcerrar"><a href="javascript:;" id="cerrar">cerrar X</a></p>
-            <h3>{{ nombre }}</h3>
-            <p>Fruta:</p>
-            <p>Cantidad:</p>
+            <h3>{{ comprador.nombreDelComprador }}</h3>
+            <p>Fruta: {{ comprador.tipo }}</p>
+            <p>Cantidad: {{ comprador.cantidad }}</p>
         </div>
         <div id="w">
             <h2>Ingrese datos</h2>
@@ -38,7 +40,7 @@
             <form>
                 <p>
                     <label for="nombrestats">Nombre del comprador:</label><br />
-                    <input type="text" name="nombrestats" placeholder="consulte los datos" id="nombrestats" ng-model="nombre">
+                    <input type="text" name="nombrestats" placeholder="consulte los datos" id="nombrestats">
                 </p>
                 <p>
                     <input type="button" value="Averigüar" id="stats" class="accbut">
